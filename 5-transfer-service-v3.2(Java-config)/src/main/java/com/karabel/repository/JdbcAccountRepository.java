@@ -26,9 +26,15 @@ public class JdbcAccountRepository implements AccountRepository {
 
 		log.info("loading account.." + number);
 
+		try {
+			Connection connection = dataSource.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		return new Account(number, 1000.00);
 	}
-
+	
 	public void updateAccount(Account account) {
 
 		log.info("updating account.." + account.getNumber());
